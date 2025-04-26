@@ -347,8 +347,21 @@
         }
         
         // Get parameters from URL
-        const nameParam = getParameterByName('name');
-        const birthdayParam = getParameterByName('birthday');
+        let nameParam = getParameterByName('name');
+        let birthdayParam = getParameterByName('birthday');
+
+        const defaults = {
+            Julia: '2011-01-11',
+            Jerome: '2013-04-09'
+        }
+
+        Object.keys(defaults).forEach(k => {
+            if (window.location.hostname.includes(k.toLowerCase())) {
+                nameParam = k;
+                birthdayParam = defaults[k];
+            }
+        })
+
         
         // Set name if provided
         if (nameParam) {
